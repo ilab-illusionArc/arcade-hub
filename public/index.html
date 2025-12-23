@@ -2,160 +2,194 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>Arcade Hub</title>
 
-  <!-- Stop favicon 404 -->
   <link rel="icon" href="data:,">
+  <meta name="theme-color" content="#0b1020" />
 
-  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-  <div class="app">
-    <header class="topbar">
-      <div class="authbar">
-        <span id="authState" class="muted">Not logged in</span>
-        <button id="btnOpenAuth" class="btn">Login</button>
-        <button id="btnLogout" class="btn" style="display:none;">Logout</button>
-      </div>
+  <div class="bg-orbs" aria-hidden="true">
+  </div>
 
-      <div class="brand">
-        <div class="logo">📨</div>
-        <div>
-          <div class="brand-title">Arcade Hub</div>
-          <div class="brand-sub">A product of illusion Arc</div>
+  <div class="app-shell">
+    <!-- App Header -->
+    <header class="app-header">
+      <div class="header-left">
+        <div class="appmark">
+          <div class="appmark-icon">🎮</div>
+        </div>
+        <div class="appbrand">
+          <div class="appbrand-title">Arcade Hub</div>
+          <div class="appbrand-sub">illusion Arc • Central Coins</div>
         </div>
       </div>
 
-      <nav class="nav">
-        <button class="navbtn" data-nav="home">Home</button>
-        <button class="navbtn" data-nav="leaderboard">Leaderboard</button>
-      </nav>
+      <div class="header-right">
+        <div class="authchip">
+          <span id="authState" class="authchip-text">Not logged in</span>
+        </div>
+        <button id="btnOpenAuth" class="iconbtn" title="Login" aria-label="Login">
+          <span class="icon">🔐</span>
+        </button>
+        <button id="btnLogout" class="iconbtn danger" title="Logout" aria-label="Logout" style="display:none;">
+          <span class="icon">⎋</span>
+        </button>
+      </div>
     </header>
 
-    <main class="panel">
+    <!-- App Body -->
+    <main class="app-main">
       <!-- HOME -->
-      <section class="view" id="view-home">
-        <h1>Welcome</h1>
+      <section class="view screen" id="view-home">
+        <div class="screen-head">
+          <div class="screen-title">Welcome back</div>
+          <div class="screen-sub">Pick a game. Earn coins. Climb the global leaderboard.</div>
+        </div>
 
-        <!-- Player Name (Required) -->
-        <div class="card">
+        <!-- Player Name -->
+        <div class="card glass">
+          <div class="card-head">
+            <div>
+              <div class="card-title">Player Identity</div>
+              <div class="card-sub">Your name appears on the global leaderboard.</div>
+            </div>
+            <span class="badge">Required</span>
+          </div>
+
           <label class="label" for="playerName">Player Name</label>
           <div class="row">
-            <input id="playerName" class="input" placeholder="Enter your name" maxlength="16" />
-            <button id="btnContinue" class="btn primary">Continue</button>
+            <input id="playerName" class="input" placeholder="e.g. Souvik_01" maxlength="16" />
+            <button id="btnContinue" class="btn primary">Save</button>
           </div>
-          <div class="hint">3–16 chars, letters/numbers/underscore.</div>
+          <div class="hint">3–16 chars • letters / numbers / underscore only</div>
           <div id="nameStatus" class="status"></div>
         </div>
 
-        <!-- Games List -->
+        <!-- Games -->
         <div class="card">
-          <div class="card-title">Games</div>
+          <div class="card-head">
+            <div>
+              <div class="card-title">Games</div>
+              <div class="card-sub">Tap to open. Coins are shared across all games.</div>
+            </div>
+            <span class="badge soft">Live</span>
+          </div>
 
-          <div class="games">
-            <!-- Inbox Invaders -->
+          <div class="games-grid">
             <button class="gamecard" data-game="inbox-invaders">
-              <div class="game-emoji">🧹</div>
-              <div class="game-meta">
-                <div class="game-title">Inbox Invaders</div>
-                <div class="game-desc">Collect ✅, avoid 💣, build combos, earn coins.</div>
+              <div class="game-left">
+                <div class="game-emoji">🧹</div>
+                <div class="game-meta">
+                  <div class="game-title">Inbox Invaders</div>
+                  <div class="game-desc">Collect ✅, avoid 💣, build combos.</div>
+                </div>
               </div>
-              <div class="game-pill">Play</div>
+              <div class="game-cta">Play</div>
             </button>
 
-            <!-- Tetris -->
             <button class="gamecard" data-game="tetris">
-              <div class="game-emoji">🧱</div>
-              <div class="game-meta">
-                <div class="game-title">Tetris</div>
-                <div class="game-desc">Stack blocks, clear lines, earn coins.</div>
+              <div class="game-left">
+                <div class="game-emoji">🧱</div>
+                <div class="game-meta">
+                  <div class="game-title">Tetris</div>
+                  <div class="game-desc">Clear lines. Increase level. Earn coins.</div>
+                </div>
               </div>
-              <div class="game-pill">Play</div>
+              <div class="game-cta">Play</div>
             </button>
 
-            <!-- NEW: Snake -->
             <button class="gamecard" data-game="snake">
-              <div class="game-emoji">🐍</div>
-              <div class="game-meta">
-                <div class="game-title">Neon Snake</div>
-                <div class="game-desc">Eat orbs, grow longer, wrap walls. Earn coins.</div>
+              <div class="game-left">
+                <div class="game-emoji">🐍</div>
+                <div class="game-meta">
+                  <div class="game-title">Neon Snake</div>
+                  <div class="game-desc">Eat orbs. Grow longer. Wrap walls.</div>
+                </div>
               </div>
-              <div class="game-pill">Play</div>
+              <div class="game-cta">Play</div>
             </button>
 
-            <!-- NEW: Breakout -->
             <button class="gamecard" data-game="breakout">
-              <div class="game-emoji">🧿</div>
-              <div class="game-meta">
-                <div class="game-title">Neon Breakout</div>
-                <div class="game-desc">Bounce the ball, break bricks, don’t miss. Earn coins.</div>
+              <div class="game-left">
+                <div class="game-emoji">🧿</div>
+                <div class="game-meta">
+                  <div class="game-title">Neon Breakout</div>
+                  <div class="game-desc">Break bricks. Don’t drop the ball.</div>
+                </div>
               </div>
-              <div class="game-pill">Play</div>
+              <div class="game-cta">Play</div>
             </button>
 
-            <!-- NEW: Neon Pong -->
             <button class="gamecard" data-game="pong">
-              <div class="game-emoji">🏓</div>
-              <div class="game-meta">
-                <div class="game-title">Neon Pong</div>
-                <div class="game-desc">Classic pong vs AI. First to 7 wins. Earn coins.</div>
+              <div class="game-left">
+                <div class="game-emoji">🏓</div>
+                <div class="game-meta">
+                  <div class="game-title">Neon Pong</div>
+                  <div class="game-desc">Versus AI. First to 7 wins.</div>
+                </div>
               </div>
-              <div class="game-pill">Play</div>
+              <div class="game-cta">Play</div>
             </button>
 
-            <!-- Coming soon -->
-            <div class="gamecard disabled">
-              <div class="game-emoji">➕</div>
-              <div class="game-meta">
-                <div class="game-title">More games coming</div>
-                <div class="game-desc">You’ll add new games here later.</div>
+            <div class="gamecard disabled" aria-disabled="true">
+              <div class="game-left">
+                <div class="game-emoji">➕</div>
+                <div class="game-meta">
+                  <div class="game-title">More games soon</div>
+                  <div class="game-desc">Drop new games into the hub anytime.</div>
+                </div>
               </div>
-              <div class="game-pill">Soon</div>
+              <div class="game-cta mutedpill">Soon</div>
             </div>
           </div>
+        </div>
+
+        <div class="footnote muted">
+          Tip: On mobile, use the bottom tabs like an app.
         </div>
       </section>
 
       <!-- LEADERBOARD -->
-      <section class="view" id="view-leaderboard">
-        <h1>Leaderboard</h1>
-        <p class="muted">Global coins across all games.</p>
+      <section class="view screen" id="view-leaderboard">
+        <div class="screen-head">
+          <div class="screen-title">Leaderboard</div>
+          <div class="screen-sub">Global coins across all games in Arcade Hub.</div>
+        </div>
 
         <div class="card">
           <div class="row spread">
             <div>
-              <div class="card-title">Leaderboard</div>
-              <div class="hint">Coins are shared across all games.</div>
+              <div class="card-title">Global Ranking</div>
+              <div class="card-sub">Coins are shared across all games.</div>
             </div>
-            <button id="btnBackFromLeaderboard" class="btn">Back</button>
+            <button id="btnBackFromLeaderboard" class="btn ghost">Back</button>
           </div>
 
-          <!-- My Rank -->
           <div class="myrank" id="myRankBox">
             <div class="pill">You: <b id="myRankName">-</b></div>
             <div class="pill">Coins: <b id="myRankCoins">-</b></div>
             <div class="pill">Rank: <b id="myRankPos">-</b></div>
           </div>
 
-          <!-- Search -->
-          <div class="row" style="margin-top:10px;">
+          <div class="row" style="margin-top:12px;">
             <input id="lbSearch" class="input" placeholder="Search username…" maxlength="16" />
             <button id="btnLbSearch" class="btn">Search</button>
-            <button id="btnLbClear" class="btn">Clear</button>
+            <button id="btnLbClear" class="btn ghost">Clear</button>
           </div>
 
-          <!-- Paging -->
           <div class="row spread" style="margin-top:10px;">
             <div class="hint">Page: <b id="lbPageLabel">1</b></div>
             <div class="row">
-              <button id="btnLbPrev" class="btn">Prev</button>
-              <button id="btnLbNext" class="btn">Next</button>
+              <button id="btnLbPrev" class="btn ghost">Prev</button>
+              <button id="btnLbNext" class="btn ghost">Next</button>
             </div>
           </div>
 
-          <div class="table" style="margin-top:10px;">
+          <div class="table" style="margin-top:12px;">
             <div class="trow thead">
               <div>#</div>
               <div>Player</div>
@@ -169,20 +203,22 @@
       </section>
 
       <!-- GAME: INBOX INVADERS -->
-      <section class="view" id="view-game-inbox-invaders">
-        <h1>Inbox Invaders</h1>
-        <p class="muted">Collect real emails ✅, avoid spam 💣. Earn coins on Game Over.</p>
+      <section class="view screen" id="view-game-inbox-invaders">
+        <div class="screen-head compact">
+          <div class="screen-title">Inbox Invaders</div>
+          <div class="screen-sub">Collect ✅, avoid 💣 • coins added on Game Over</div>
+        </div>
 
         <div class="card">
           <div class="row spread">
-            <div>
-              <div class="card-title">Player</div>
+            <div class="playerbox">
+              <div class="pill soft">Player</div>
               <div id="currentPlayer" class="pill"></div>
             </div>
 
             <div class="row">
-              <button id="btnStartRun" class="btn primary">Start Run</button>
-              <button id="btnBackFromGame" class="btn">Home</button>
+              <button id="btnStartRun" class="btn primary">Start</button>
+              <button id="btnBackFromGame" class="btn ghost">Home</button>
             </div>
           </div>
 
@@ -200,9 +236,9 @@
               <div class="overlayCard">
                 <div class="overlayTitle" id="overlayTitle">Ready?</div>
                 <div class="overlayText" id="overlayText">
-                  Move with <b>Arrow keys</b> / <b>A-D</b> or drag on mobile. Collect ✅ and avoid 💣.
+                  Move with <b>Arrow keys</b>/<b>A-D</b> or drag on mobile. Collect ✅ and avoid 💣.
                 </div>
-                <div class="row" style="justify-content:center; margin-top:12px;">
+                <div class="row center" style="margin-top:12px;">
                   <button id="btnOverlayStart" class="btn primary">Play</button>
                 </div>
               </div>
@@ -214,20 +250,22 @@
       </section>
 
       <!-- GAME: TETRIS -->
-      <section class="view" id="view-game-tetris">
-        <h1>Tetris</h1>
-        <p class="muted">Stack blocks, clear lines, earn coins on Game Over.</p>
+      <section class="view screen" id="view-game-tetris">
+        <div class="screen-head compact">
+          <div class="screen-title">Tetris</div>
+          <div class="screen-sub">Clear lines • earn coins on Game Over</div>
+        </div>
 
         <div class="card">
           <div class="row spread">
-            <div>
-              <div class="card-title">Player</div>
+            <div class="playerbox">
+              <div class="pill soft">Player</div>
               <div id="currentPlayerTetris" class="pill"></div>
             </div>
 
             <div class="row">
               <button id="btnStartTetris" class="btn primary">Start</button>
-              <button id="btnBackFromTetris" class="btn">Home</button>
+              <button id="btnBackFromTetris" class="btn ghost">Home</button>
             </div>
           </div>
 
@@ -244,40 +282,37 @@
               <div class="overlayCard">
                 <div class="overlayTitle" id="tetrisOverlayTitle">Ready?</div>
                 <div class="overlayText" id="tetrisOverlayText">
-                  Controls: ← → move, ↓ soft drop, ↑ rotate, Space hard drop, P pause
+                  Controls: ← → move, ↓ drop, ↑ rotate, Space hard drop, P pause
                 </div>
-
-                <div class="row" style="justify-content:center; margin-top:12px;">
+                <div class="row center" style="margin-top:12px;">
                   <button id="btnTetrisRestart" class="btn primary">Start</button>
-                  <button id="btnTetrisHome" class="btn">Home</button>
+                  <button id="btnTetrisHome" class="btn ghost">Home</button>
                 </div>
               </div>
             </div>
-          </div>
-
-          <div class="hint" style="margin-top:10px;">
-            Controls: ← → move, ↓ soft drop, ↑ rotate, Space hard drop, P pause
           </div>
 
           <div id="tetrisStatus" class="status"></div>
         </div>
       </section>
 
-      <!-- GAME: NEON SNAKE -->
-      <section class="view" id="view-game-snake">
-        <h1>Neon Snake</h1>
-        <p class="muted">Eat orbs, grow longer. Wrap through walls. Crash into yourself = Game Over.</p>
+      <!-- GAME: SNAKE -->
+      <section class="view screen" id="view-game-snake">
+        <div class="screen-head compact">
+          <div class="screen-title">Neon Snake</div>
+          <div class="screen-sub">Eat • grow • avoid yourself • coins on Game Over</div>
+        </div>
 
         <div class="card">
           <div class="row spread">
-            <div>
-              <div class="card-title">Player</div>
+            <div class="playerbox">
+              <div class="pill soft">Player</div>
               <div id="currentPlayerSnake" class="pill"></div>
             </div>
 
             <div class="row">
               <button id="btnStartSnake" class="btn primary">Start</button>
-              <button id="btnBackFromSnake" class="btn">Home</button>
+              <button id="btnBackFromSnake" class="btn ghost">Home</button>
             </div>
           </div>
 
@@ -294,40 +329,37 @@
               <div class="overlayCard">
                 <div class="overlayTitle" id="snakeOverlayTitle">Ready?</div>
                 <div class="overlayText" id="snakeOverlayText">
-                  Controls: Arrow keys / WASD. On mobile: swipe to turn.
+                  Controls: Arrow keys / WASD • On mobile: swipe to turn
                 </div>
-
-                <div class="row" style="justify-content:center; margin-top:12px;">
+                <div class="row center" style="margin-top:12px;">
                   <button id="btnSnakeRestart" class="btn primary">Start</button>
-                  <button id="btnSnakeHome" class="btn">Home</button>
+                  <button id="btnSnakeHome" class="btn ghost">Home</button>
                 </div>
               </div>
             </div>
-          </div>
-
-          <div class="hint" style="margin-top:10px;">
-            Controls: Arrow keys / WASD. On mobile: swipe to turn.
           </div>
 
           <div id="snakeStatus" class="status"></div>
         </div>
       </section>
 
-      <!-- GAME: NEON BREAKOUT -->
-      <section class="view" id="view-game-breakout">
-        <h1>Neon Breakout</h1>
-        <p class="muted">Move the paddle, break all bricks. Miss the ball = lose a life.</p>
+      <!-- GAME: BREAKOUT -->
+      <section class="view screen" id="view-game-breakout">
+        <div class="screen-head compact">
+          <div class="screen-title">Neon Breakout</div>
+          <div class="screen-sub">Break bricks • keep the ball alive</div>
+        </div>
 
         <div class="card">
           <div class="row spread">
-            <div>
-              <div class="card-title">Player</div>
+            <div class="playerbox">
+              <div class="pill soft">Player</div>
               <div id="currentPlayerBreakout" class="pill"></div>
             </div>
 
             <div class="row">
               <button id="btnStartBreakout" class="btn primary">Start</button>
-              <button id="btnBackFromBreakout" class="btn">Home</button>
+              <button id="btnBackFromBreakout" class="btn ghost">Home</button>
             </div>
           </div>
 
@@ -344,19 +376,14 @@
               <div class="overlayCard">
                 <div class="overlayTitle" id="breakoutOverlayTitle">Ready?</div>
                 <div class="overlayText" id="breakoutOverlayText">
-                  Controls: Mouse / Touch drag to move the paddle. Clear all bricks to win.
+                  Drag to move paddle • Clear all bricks to win
                 </div>
-
-                <div class="row" style="justify-content:center; margin-top:12px;">
+                <div class="row center" style="margin-top:12px;">
                   <button id="btnBreakoutRestart" class="btn primary">Start</button>
-                  <button id="btnBreakoutHome" class="btn">Home</button>
+                  <button id="btnBreakoutHome" class="btn ghost">Home</button>
                 </div>
               </div>
             </div>
-          </div>
-
-          <div class="hint" style="margin-top:10px;">
-            Controls: Mouse / Touch drag to move the paddle.
           </div>
 
           <div id="breakoutStatus" class="status"></div>
@@ -364,20 +391,22 @@
       </section>
 
       <!-- GAME: PONG -->
-      <section class="view" id="view-game-pong">
-        <h1>Neon Pong</h1>
-        <p class="muted">Move your paddle up/down. First to 7 wins.</p>
+      <section class="view screen" id="view-game-pong">
+        <div class="screen-head compact">
+          <div class="screen-title">Neon Pong</div>
+          <div class="screen-sub">Versus AI • First to 7 wins</div>
+        </div>
 
         <div class="card">
           <div class="row spread">
-            <div>
-              <div class="card-title">Player</div>
+            <div class="playerbox">
+              <div class="pill soft">Player</div>
               <div id="currentPlayerPong" class="pill"></div>
             </div>
 
             <div class="row">
               <button id="btnStartPong" class="btn primary">Start</button>
-              <button id="btnBackFromPong" class="btn">Home</button>
+              <button id="btnBackFromPong" class="btn ghost">Home</button>
             </div>
           </div>
 
@@ -394,11 +423,11 @@
               <div class="overlayCard">
                 <div class="overlayTitle" id="pongOverlayTitle">Ready?</div>
                 <div class="overlayText" id="pongOverlayText">
-                  Controls: <b>W/S</b> or <b>↑/↓</b>, or <b>mouse/touch drag</b>.
+                  Controls: <b>W/S</b> or <b>↑/↓</b> • or drag on mobile
                 </div>
-                <div class="row" style="justify-content:center; margin-top:12px;">
+                <div class="row center" style="margin-top:12px;">
                   <button id="btnPongRestart" class="btn primary">Start</button>
-                  <button id="btnPongHome" class="btn">Home</button>
+                  <button id="btnPongHome" class="btn ghost">Home</button>
                 </div>
               </div>
             </div>
@@ -407,12 +436,26 @@
           <div id="pongStatus" class="status"></div>
         </div>
       </section>
-
-
     </main>
 
+    <!-- Bottom Tab Bar (mobile-first) -->
+    <nav class="tabbar" aria-label="App navigation">
+      <button class="tab" data-nav="home">
+        <span class="tab-icon">🏠</span>
+        <span class="tab-label">Home</span>
+      </button>
+      <button class="tab" data-nav="leaderboard">
+        <span class="tab-icon">🏆</span>
+        <span class="tab-label">Rank</span>
+      </button>
+      <button class="tab tab-ghost" id="tabLogin" type="button">
+        <span class="tab-icon">👤</span>
+        <span class="tab-label">Account</span>
+      </button>
+    </nav>
+
     <footer class="footer">
-      <span class="muted">&copy; 2025 Illusion Arc. All rights reserved.</span>
+      <span class="muted">&copy; 2025 Illusion Arc</span>
     </footer>
   </div>
 
@@ -421,10 +464,10 @@
     <div class="modalCard">
       <div class="row spread">
         <div class="card-title">Account</div>
-        <button id="btnCloseAuth" class="btn">X</button>
+        <button id="btnCloseAuth" class="iconbtn" aria-label="Close">✕</button>
       </div>
 
-      <div class="hint">Use email + password (dev simple).</div>
+      <div class="hint">Email + password login (simple mode).</div>
 
       <label class="label" for="authEmail">Email</label>
       <input id="authEmail" class="input" placeholder="you@example.com" />
@@ -433,13 +476,13 @@
       <input id="authPass" class="input" type="password" placeholder="Min 6 chars" />
 
       <div class="row" style="margin-top:12px;">
-        <button id="btnSignup" class="btn">Sign Up</button>
+        <button id="btnSignup" class="btn ghost">Sign Up</button>
         <button id="btnLogin" class="btn primary">Login</button>
       </div>
 
       <div id="authMsg" class="status"></div>
 
-      <hr style="border:0; border-top:1px solid var(--line); margin:14px 0;" />
+      <div class="divider"></div>
 
       <label class="label" for="displayName">Display Name</label>
       <input id="displayName" class="input" placeholder="Your public username" maxlength="16" />
@@ -449,18 +492,28 @@
     </div>
   </div>
 
-  <!-- Supabase JS (CDN) -->
-  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <!-- Supabase JS (UMD recommended for window.supabase) -->
+  <script src="https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 
   <!-- Core app -->
   <script src="app.js"></script>
 
-  <!-- Games (separate files) -->
+  <!-- Games -->
   <script src="inbox.js"></script>
   <script src="tetris.js"></script>
   <script src="snake.js"></script>
   <script src="breakout.js"></script>
   <script src="pong.js"></script>
 
+  <!-- Small helper: open auth modal from Account tab -->
+  <script>
+    (function () {
+      const tabLogin = document.getElementById("tabLogin");
+      const btnOpenAuth = document.getElementById("btnOpenAuth");
+      if (tabLogin && btnOpenAuth) {
+        tabLogin.addEventListener("click", () => btnOpenAuth.click());
+      }
+    })();
+  </script>
 </body>
 </html>
